@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#03070a" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="description" content="ABYSSAL — a living archive of the last light in the dark. A fictional deep-sea descent through the midnight zone." />
+  <meta property="og:title" content="ABYSSAL — The ocean remembers" />
+  <meta property="og:description" content="A living archive of the last light in the dark. Scroll to descend 10,994 meters." />
+  <meta property="og:type" content="website" />
+  <title>ABYSSAL — The ocean remembers</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2303070a'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%237ef9ff' stroke-opacity='.3'/%3E%3Ccircle cx='32' cy='32' r='9' fill='%237ef9ff'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="progress-bar" aria-hidden="true"><span id="progress-fill"></span></div>
+  <canvas id="scene" aria-hidden="true"></canvas>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <header class="site-header" id="site-header">
+    <a class="wordmark" href="#top" aria-label="ABYSSAL home">
+      <span class="wordmark-mark" aria-hidden="true"></span>
+      ABYSSAL
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="#descent">Descent</a>
+      <a href="#specimens">Specimens</a>
+      <a href="#sonar">Sonar</a>
+      <a href="#notes">Field notes</a>
+    </nav>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="menu-toggle-dot" aria-hidden="true"></span>
+      <span>Menu</span>
+    </button>
+    <a class="header-cta" href="#transmission">Enter the archive <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container hero-inner">
+        <p class="eyebrow hero-eyebrow">Expedition 07 — Pacific / 11°21′N 142°12′E</p>
+        <h1 class="hero-title" id="hero-title">
+          The ocean<br />
+          <em>remembers.</em>
+        </h1>
+        <p class="hero-sub">A living archive of the last light in the dark. Scroll to descend 10,994 meters.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#descent">Begin the descent <span aria-hidden="true">↓</span></a>
+          <a class="text-link" href="#notes">Read the field notes <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+
+      <div class="container hero-footer">
+        <div class="scroll-cue" aria-hidden="true">
+          <span class="scroll-line"></span>
+          <span>Scroll to descend</span>
+        </div>
+        <div class="hero-hud" aria-label="Live depth telemetry">
+          <div class="hud-item"><span class="hud-label">Depth</span><span class="hud-value" id="hud-depth">0000 m</span></div>
+          <div class="hud-item hud-item-optional"><span class="hud-label">Pressure</span><span class="hud-value" id="hud-pressure">1.00 atm</span></div>
+          <div class="hud-item hud-item-optional"><span class="hud-label">Temp</span><span class="hud-value" id="hud-temp">18.4 °C</span></div>
+          <div class="hud-item"><span class="hud-label">Zone</span><span class="hud-value" id="hud-zone">Epipelagic</span></div>
+        </div>
+      </div>
+
+      <p class="hero-side-label" aria-hidden="true">Live from the epipelagic</p>
+    </section>
+
+    <section class="section section-descent" id="descent" aria-labelledby="descent-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow" data-reveal>01 / The descent</p>
+          <h2 class="display" id="descent-title" data-reveal>We are guests <em>here.</em></h2>
+        </div>
+
+        <div class="descent-grid">
+          <div class="descent-copy" data-reveal>
+            <p class="lead">Below 200 meters, sunlight gives up. Below 1,000, the world is lit by living things.</p>
+            <p>ABYSSAL is a field archive of that light — a record of the creatures that make the dark visible, and the places they are losing.</p>
+            <p class="mono-note">Scroll slowly. The pressure is real.</p>
+          </div>
+          <div class="descent-stats" data-reveal style="--delay: 120ms">
+            <div class="stat"><span class="stat-value">200 <small>m</small></span><span class="stat-label">The last of the sun</span></div>
+            <div class="stat"><span class="stat-value">1,000 <small>m</small></span><span class="stat-label">The midnight zone</span></div>
+            <div class="stat"><span class="stat-value">10,994 <small>m</small></span><span class="stat-label">The hadal floor</span></div>
+          </div>
+        </div>
+
+        <div class="depth-rail" aria-hidden="true">
+          <span class="depth-rail-label">0 m</span>
+          <span class="depth-rail-line"><span class="depth-rail-fill" id="depth-rail-fill"></span></span>
+          <span class="depth-rail-label">10,994 m</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-specimens" id="specimens" aria-labelledby="specimens-title">
+      <div class="container">
+        <div class="section-head split">
+          <div>
+            <p class="eyebrow" data-reveal>02 / Specimens</p>
+            <h2 class="display" id="specimens-title" data-reveal>Three ways <em>to glow.</em></h2>
+          </div>
+          <p class="section-intro" data-reveal style="--delay: 100ms">Collected on descent 07. Each organism is a different answer to the same problem: how to be seen without being eaten.</p>
+        </div>
+
+        <div class="specimen-grid">
+          <article class="specimen-card" data-specimen="luminara" data-reveal>
+            <div class="specimen-visual" aria-hidden="true">
+              <svg viewBox="0 0 200 200" class="specimen-svg specimen-jelly">
+                <g class="jelly-rings" fill="none" stroke="currentColor" stroke-width=".4" opacity=".15">
+                  <circle cx="100" cy="92" r="66" />
+                  <circle cx="100" cy="92" r="50" />
+                </g>
+                <path class="jelly-bell" d="M42 96 C42 52 158 52 158 96 Q150 108 140 98 Q130 110 120 99 Q110 111 100 99 Q90 111 80 99 Q70 110 60 98 Q50 108 42 96 Z" fill="none" stroke="currentColor" stroke-width="1.4" />
+                <path class="jelly-inner" d="M62 96 C62 66 138 66 138 96" fill="none" stroke="currentColor" stroke-width=".8" opacity=".45" />
+                <g class="jelly-tentacles" fill="none" stroke="currentColor" stroke-width=".8" opacity=".6">
+                  <path d="M58 102 C52 128 68 142 58 176" />
+                  <path d="M72 101 C66 132 82 150 72 182" />
+                  <path d="M86 100 C82 138 94 154 84 186" />
+                  <path d="M100 100 C98 140 108 158 100 188" />
+                  <path d="M114 100 C118 138 106 154 116 186" />
+                  <path d="M128 101 C134 132 118 150 128 182" />
+                  <path d="M142 102 C148 128 132 142 142 176" />
+                </g>
+                <g class="jelly-arms" fill="none" stroke="currentColor" stroke-width="2.4" opacity=".22">
+                  <path d="M86 100 C80 130 96 148 88 170" />
+                  <path d="M100 100 C98 132 110 150 102 174" />
+                  <path d="M114 100 C120 130 104 148 112 170" />
+                </g>
+              </svg>
+            </div>
+            <div class="specimen-meta"><span>01 / 03</span><span>1,240 m</span></div>
+            <h3>Luminara <em>vex</em></h3>
+            <p class="specimen-latin">The lantern jelly</p>
+            <p class="specimen-desc">A bell of glass and a hundred false horizons. It pulses once every nine seconds; the light travels further than the body.</p>
+            <button class="specimen-button" type="button" data-open-specimen="luminara">Open specimen <span aria-hidden="true">↗</span></button>
+          </article>
+
+          <article class="specimen-card" data-specimen="noctiluca" data-reveal style="--delay: 100ms">
+            <div class="specimen-visual" aria-hidden="true">
+              <svg viewBox="0 0 200 200" class="specimen-svg specimen-bloom">
+                <g class="bloom-rings" fill="none" stroke="currentColor" stroke-width=".4" opacity=".14">
+                  <circle cx="100" cy="100" r="74" />
+                  <circle cx="100" cy="100" r="50" />
+                </g>
+                <g class="bloom-connect" fill="none" stroke="currentColor" stroke-width=".4" opacity=".22">
+                  <path d="M100 100 L68 74 M100 100 L132 70 M100 100 L54 112 M100 100 L146 112 M100 100 L76 140 M100 100 L126 144 M68 74 L46 92 M132 70 L156 90 M54 112 L46 142 M146 112 L154 142" />
+                </g>
+                <g class="bloom-dots" fill="currentColor">
+                  <circle cx="100" cy="100" r="3.4" class="bloom-dot" style="--d:0s" />
+                  <circle cx="68" cy="74" r="2.6" class="bloom-dot" style="--d:-.4s" />
+                  <circle cx="132" cy="70" r="2.2" class="bloom-dot" style="--d:-.9s" />
+                  <circle cx="54" cy="112" r="2.4" class="bloom-dot" style="--d:-1.3s" />
+                  <circle cx="146" cy="112" r="2.8" class="bloom-dot" style="--d:-.7s" />
+                  <circle cx="76" cy="140" r="2.2" class="bloom-dot" style="--d:-1.7s" />
+                  <circle cx="126" cy="144" r="2.5" class="bloom-dot" style="--d:-1.1s" />
+                  <circle cx="46" cy="92" r="1.8" class="bloom-dot" style="--d:-2.1s" />
+                  <circle cx="156" cy="90" r="2" class="bloom-dot" style="--d:-.2s" />
+                  <circle cx="46" cy="142" r="1.7" class="bloom-dot" style="--d:-1.5s" />
+                  <circle cx="154" cy="142" r="1.9" class="bloom-dot" style="--d:-2.4s" />
+                  <circle cx="86" cy="58" r="1.6" class="bloom-dot" style="--d:-.6s" />
+                  <circle cx="116" cy="54" r="1.5" class="bloom-dot" style="--d:-1.9s" />
+                  <circle cx="62" cy="158" r="1.5" class="bloom-dot" style="--d:-1.2s" />
+                  <circle cx="140" cy="160" r="1.7" class="bloom-dot" style="--d:-2.2s" />
+                  <circle cx="100" cy="168" r="1.8" class="bloom-dot" style="--d:-.8s" />
+                  <circle cx="100" cy="38" r="1.4" class="bloom-dot" style="--d:-1.4s" />
+                  <circle cx="34" cy="118" r="1.3" class="bloom-dot" style="--d:-2.6s" />
+                  <circle cx="166" cy="120" r="1.4" class="bloom-dot" style="--d:-.3s" />
+                </g>
+              </svg>
+            </div>
+            <div class="specimen-meta"><span>02 / 03</span><span>2,870 m</span></div>
+            <h3>Noctiluca <em>chorus</em></h3>
+            <p class="specimen-latin">The midnight bloom</p>
+            <p class="specimen-desc">A colony that answers light with light. Touch one cell and the whole field remembers.</p>
+            <button class="specimen-button" type="button" data-open-specimen="noctiluca">Open specimen <span aria-hidden="true">↗</span></button>
+          </article>
+
+          <article class="specimen-card" data-specimen="charybdis" data-reveal style="--delay: 200ms">
+            <div class="specimen-visual" aria-hidden="true">
+              <svg viewBox="0 0 200 200" class="specimen-svg specimen-siphon">
+                <path class="siphon-spine" d="M18 118 C48 64 82 150 112 96 S162 72 186 108" fill="none" stroke="currentColor" stroke-width=".8" opacity=".4" />
+                <path class="siphon-dots" d="M18 118 C48 64 82 150 112 96 S162 72 186 108" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-dasharray="0.1 16" />
+                <g class="siphon-frills" fill="none" stroke="currentColor" stroke-width=".6" opacity=".35">
+                  <path d="M34 96 C30 120 44 132 36 154" />
+                  <path d="M58 78 C54 102 68 114 60 136" />
+                  <path d="M82 124 C78 148 92 160 84 182" />
+                  <path d="M106 104 C102 128 116 140 108 162" />
+                  <path d="M130 92 C126 116 140 128 132 150" />
+                  <path d="M154 78 C150 102 164 114 156 136" />
+                  <path d="M178 100 C174 124 188 136 180 158" />
+                </g>
+              </svg>
+            </div>
+            <div class="specimen-meta"><span>03 / 03</span><span>4,120 m</span></div>
+            <h3>Charybdis <em>echo</em></h3>
+            <p class="specimen-latin">The listening siphonophore</p>
+            <p class="specimen-desc">Forty meters of connected selves. It does not swim so much as listen its way forward.</p>
+            <button class="specimen-button" type="button" data-open-specimen="charybdis">Open specimen <span aria-hidden="true">↗</span></button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-sonar" id="sonar" aria-labelledby="sonar-title">
+      <div class="container">
+        <div class="section-head split">
+          <div>
+            <p class="eyebrow" data-reveal>03 / Sonar</p>
+            <h2 class="display" id="sonar-title" data-reveal>Listen. The dark <em>is not empty.</em></h2>
+          </div>
+          <p class="section-intro" data-reveal style="--delay: 100ms">Sweep the water. Every contact is a living thing — or a thing we have not named yet.</p>
+        </div>
+
+        <div class="sonar-layout">
+          <div class="sonar-panel" data-reveal>
+            <div class="sonar-frame">
+              <canvas id="sonar-canvas" aria-hidden="true"></canvas>
+              <div class="sonar-overlay">
+                <span class="sonar-corner">ABYSSAL / SONAR 07</span>
+                <span class="sonar-corner sonar-corner-right" id="sonar-readout">Bearing 000° / Range 0.0 km</span>
+              </div>
+            </div>
+            <p class="sonar-hint">Move to listen. Click a contact to identify.</p>
+          </div>
+
+          <div class="sonar-list" data-reveal style="--delay: 120ms">
+            <p class="eyebrow">Contacts</p>
+            <button class="contact-row" type="button" data-contact="luminara"><span class="contact-dot"></span><span class="contact-name">Luminara vex</span><span class="contact-depth">1,240 m</span></button>
+            <button class="contact-row" type="button" data-contact="noctiluca"><span class="contact-dot"></span><span class="contact-name">Noctiluca chorus</span><span class="contact-depth">2,870 m</span></button>
+            <button class="contact-row" type="button" data-contact="charybdis"><span class="contact-dot"></span><span class="contact-name">Charybdis echo</span><span class="contact-depth">4,120 m</span></button>
+            <button class="contact-row" type="button" data-contact="unknown"><span class="contact-dot contact-dot-amber"></span><span class="contact-name">Unknown contact</span><span class="contact-depth">6,400 m</span></button>
+
+            <div class="sonar-detail" id="sonar-detail" aria-live="polite">
+              <p class="sonar-detail-kicker">Selected contact</p>
+              <h3 id="sonar-detail-name">Luminara vex</h3>
+              <p id="sonar-detail-copy">A bell of glass and a hundred false horizons. The sonar returns a soft, repeating bloom.</p>
+              <div class="sonar-detail-stats">
+                <span>Bearing<strong id="sonar-detail-bearing">042°</strong></span>
+                <span>Range<strong id="sonar-detail-range">1.2 km</strong></span>
+                <span>Depth<strong id="sonar-detail-depth">1,240 m</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-notes" id="notes" aria-labelledby="notes-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow" data-reveal>04 / Field notes</p>
+          <h2 class="display" id="notes-title" data-reveal>Nothing here <em>needs the sun.</em></h2>
+        </div>
+
+        <blockquote class="big-quote" data-reveal>
+          <p>At 4,000 meters, the pressure is 400 atmospheres. The body becomes a rumor. The light becomes a language.</p>
+          <cite>— Dr. Iona Vale, descent 07</cite>
+        </blockquote>
+
+        <div class="log-grid">
+          <article class="log-entry" data-reveal>
+            <div class="log-meta"><span>Log 014</span><span>02:17 / 1,240 m</span></div>
+            <p>The jellyfish did not move when the submersible passed. It only changed color. We are the weather.</p>
+          </article>
+          <article class="log-entry" data-reveal style="--delay: 100ms">
+            <div class="log-meta"><span>Log 021</span><span>04:42 / 2,870 m</span></div>
+            <p>A bloom of Noctiluca followed the lights for six minutes. When we cut the lamps, it stayed. It had learned our shape.</p>
+          </article>
+          <article class="log-entry" data-reveal style="--delay: 200ms">
+            <div class="log-meta"><span>Log 033</span><span>09:08 / 6,400 m</span></div>
+            <p>Contact. No match in the archive. The sonar operator has stopped calling it a creature.</p>
+          </article>
+        </div>
+
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee-track">
+            <span>11°21′N 142°12′E — 10,994 M — NO SIGNAL — 11°21′N 142°12′E — 10,994 M — NO SIGNAL — </span>
+            <span>11°21′N 142°12′E — 10,994 M — NO SIGNAL — 11°21′N 142°12′E — 10,994 M — NO SIGNAL — </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-transmission" id="transmission" aria-labelledby="transmission-title">
+      <div class="container transmission-inner">
+        <p class="eyebrow" data-reveal>05 / Transmission</p>
+        <h2 class="display" id="transmission-title" data-reveal>Join the <em>descent.</em></h2>
+        <p class="transmission-copy" data-reveal>One field note a month. No noise. Only light.</p>
+        <form class="transmission-form" id="transmission-form" data-reveal>
+          <label class="sr-only" for="email">Email address</label>
+          <input id="email" type="email" name="email" placeholder="you@somewhere.earth" autocomplete="email" required />
+          <button class="button button-primary" type="submit">Request access <span aria-hidden="true">↗</span></button>
+        </form>
+        <p class="form-status" id="form-status" role="status"></p>
+        <p class="transmission-note">A fictional archive. Built as a study in scroll, light, and restraint.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand"><span class="wordmark-mark" aria-hidden="true"></span> ABYSSAL</div>
+      <p>Expedition 07<br />11°21′N 142°12′E</p>
+      <nav aria-label="Footer">
+        <a href="#descent">Descent</a>
+        <a href="#specimens">Specimens</a>
+        <a href="#sonar">Sonar</a>
+        <a href="#notes">Field notes</a>
+      </nav>
+      <p class="footer-fine">© 2026 ABYSSAL. A fictional deep-sea archive.<br />Typography: Fraunces, Space Grotesk, IBM Plex Mono.</p>
+    </div>
+  </footer>
+
+  <dialog class="mobile-menu" id="mobile-menu" aria-label="Site menu">
+    <div class="mobile-menu-top">
+      <span class="wordmark">
+        <span class="wordmark-mark" aria-hidden="true"></span>
+        ABYSSAL
+      </span>
+      <button class="mobile-menu-close" type="button" aria-label="Close menu">Close <span aria-hidden="true">×</span></button>
+    </div>
+    <nav class="mobile-menu-nav" aria-label="Mobile">
+      <a href="#descent"><span>01</span>Descent<em aria-hidden="true">↓</em></a>
+      <a href="#specimens"><span>02</span>Specimens<em aria-hidden="true">↗</em></a>
+      <a href="#sonar"><span>03</span>Sonar<em aria-hidden="true">↗</em></a>
+      <a href="#notes"><span>04</span>Field notes<em aria-hidden="true">↗</em></a>
+      <a href="#transmission"><span>05</span>Transmission<em aria-hidden="true">↗</em></a>
+    </nav>
+    <div class="mobile-menu-foot">
+      <p>Expedition 07<br />11°21′N 142°12′E</p>
+      <p>10,994 m<br />below sea level</p>
+    </div>
+  </dialog>
+
+  <dialog class="specimen-dialog" id="specimen-dialog" aria-labelledby="dialog-name">
+    <button class="dialog-close" type="button" aria-label="Close specimen">×</button>
+    <div class="dialog-visual" id="dialog-visual" aria-hidden="true"></div>
+    <div class="dialog-copy">
+      <p class="eyebrow" id="dialog-kicker">Specimen 01 / 03</p>
+      <h2 id="dialog-name">Luminara vex</h2>
+      <p class="dialog-latin" id="dialog-latin">The lantern jelly</p>
+      <p id="dialog-desc">A bell of glass and a hundred false horizons. It pulses once every nine seconds; the light travels further than the body.</p>
+      <dl class="dialog-stats">
+        <div><dt>Depth</dt><dd id="dialog-depth">1,240 m</dd></div>
+        <div><dt>Zone</dt><dd id="dialog-zone">Bathypelagic</dd></div>
+        <div><dt>Light</dt><dd id="dialog-light">Bioluminescent</dd></div>
+      </dl>
+    </div>
+  </dialog>
+
+  <script src="main.js" defer></script>
+</body>
+</html>

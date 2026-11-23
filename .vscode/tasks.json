@@ -1,0 +1,42 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "ABYSSAL: serve",
+      "type": "shell",
+      "command": "python",
+      "args": ["-m", "http.server", "4180", "--bind", "127.0.0.1"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "ABYSSAL: open browser",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-Command",
+        "Start-Sleep -Seconds 2; Start-Process 'http://127.0.0.1:4180'"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "ABYSSAL: run",
+      "dependsOrder": "parallel",
+      "dependsOn": ["ABYSSAL: serve", "ABYSSAL: open browser"],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}
